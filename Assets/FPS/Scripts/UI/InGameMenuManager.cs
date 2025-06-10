@@ -35,6 +35,8 @@ namespace Unity.FPS.UI
 
 
         public GameObject UI_Achivement;
+        public GameObject UI_Attendance;
+
         void Start()
         {
             m_PlayerInputsHandler = FindObjectOfType<PlayerInputHandler>();
@@ -98,6 +100,31 @@ namespace Unity.FPS.UI
                     LookSensitivitySlider.Select();
                 }
             }
+
+            //전태준이 추가한 코드
+            if(Input.GetKeyDown(KeyCode.F1))
+            {
+                UI_Attendance.SetActive(!UI_Attendance.activeSelf);
+
+                if(UI_Attendance.activeSelf ==true)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    Time.timeScale = 0f;
+                    AudioUtility.SetMasterVolume(VolumeWhenMenuOpen);
+
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    Time.timeScale = 1f;
+                    AudioUtility.SetMasterVolume(1);
+                }
+
+            }
+
         }
 
         public void ClosePauseMenu()

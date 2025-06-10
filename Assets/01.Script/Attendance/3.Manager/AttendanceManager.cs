@@ -8,7 +8,7 @@ public class AttendanceManager : MonoBehaviour
     [SerializeField] private List<AttendanceSO> _metaDatas;
 
     private List<Attendance> _attendances;
-    public List<Attendance> Attendances => _attendances;
+    public List<AttendanceDTO> Attendances => _attendances.ConvertAll(a => new AttendanceDTO(a));
 
     private void Awake()
     {

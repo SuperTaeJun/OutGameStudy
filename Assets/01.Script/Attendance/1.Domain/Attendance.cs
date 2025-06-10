@@ -12,7 +12,7 @@ public class Attendance
     private bool _hasCheckedInToday;
     public bool HasCheckedInToday => _hasCheckedInToday;
     private DateTime _lastCheckedDate;
-
+    public DateTime LastCheckedDate => _lastCheckedDate;
     public Attendance(AttendanceSO attendanceSO)
     {
         ID = attendanceSO.ID;

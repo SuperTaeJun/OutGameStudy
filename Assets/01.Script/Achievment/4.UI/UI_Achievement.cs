@@ -6,7 +6,6 @@ public class UI_Achievement : MonoBehaviour
     [SerializeField] private List<UI_AchievementSlot> _slots;
     [SerializeField] private GameObject SlotPrefab;
     [SerializeField] private Transform ContentTransform;
-
     private void Start()
     {
         //if(_slots!= null)
@@ -42,6 +41,5 @@ public class UI_Achievement : MonoBehaviour
         }
 
         Refresh();
-        gameObject.SetActive(false);
     }
 }
