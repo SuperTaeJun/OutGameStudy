@@ -4,12 +4,12 @@ using UnityEngine;
 public class AttendanceSO : ScriptableObject
 {
     [Header("기본 정보")]
-    [SerializeField] private readonly int _iD;
-    [SerializeField] private readonly int _day;
+    [SerializeField] private int _iD;
+    [SerializeField] private int _day;
 
     [Header("보상 정보")]
-    [SerializeField] private readonly ECurrencyType _rewardCurrencyType;
-    [SerializeField] private readonly int _rewardAmount;
+    [SerializeField] private ECurrencyType _rewardCurrencyType;
+    [SerializeField] private int _rewardAmount;
 
 
     public int ID => _iD;
