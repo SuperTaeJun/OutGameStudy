@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.FPS.Game;
 using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
@@ -15,7 +14,7 @@ public class AchievementManager : MonoBehaviour
 
     public event Action OnDataChanged;
     public event Action<AchievementDTO> OnNewAchievementReward;
-
+    public event Action<int> OnInitFinished;
 
     private AchievementRepository  _repository;
 
@@ -35,6 +34,10 @@ public class AchievementManager : MonoBehaviour
         Init();
     }
 
+    private void Start()
+    {
+        OnInitFinished.Invoke(_metaDatas.Count); 
+    }
     private Achievement FindAchievementByID(string id)
     {
         return _allAchievements.Find(a => a.ID == id);
@@ -61,7 +64,6 @@ public class AchievementManager : MonoBehaviour
             Achievement achievement = new Achievement(metaData, savedData);
             _allAchievements.Add(achievement);
         }
-
     }
     public void Increase(EAchievementCondition condition, int value)
     {

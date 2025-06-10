@@ -9,6 +9,7 @@ public class UI_Notification : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _reward;
 
+    //연속으로 업적이 달성될수도 있음
     private Queue<AchievementDTO> _notificationQueue = new Queue<AchievementDTO>();
     private bool _isShowing = false;
 
@@ -48,7 +49,7 @@ public class UI_Notification : MonoBehaviour
     private void SetNotification(AchievementDTO achievement)
     {
         _name.text = achievement.Name;
-        _reward.text = $"{achievement.RewardCurrencyType} {achievement.RewardAmount}";
+        _reward.text = $"{achievement.RewardCurrencyType} {achievement.RewardAmount} 획득 가능~!";
     }
 
 }
