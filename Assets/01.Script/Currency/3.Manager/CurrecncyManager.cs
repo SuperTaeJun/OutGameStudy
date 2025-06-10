@@ -69,6 +69,7 @@ public class CurrecncyManager : MonoBehaviour
 
         _repository.Save(ToDtoList());
 
+        AchievementManager.Instance.Increase(EAchievementCondition.GoldCollect, value);
         OnDataChanged?.Invoke();
     }
     public bool TryBuy(ECurrencyType type, int value)
