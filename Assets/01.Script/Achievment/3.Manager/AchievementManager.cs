@@ -36,7 +36,7 @@ public class AchievementManager : MonoBehaviour
 
     private void Start()
     {
-        OnInitFinished.Invoke(_metaDatas.Count); 
+        OnInitFinished?.Invoke(_metaDatas.Count); 
     }
     private Achievement FindAchievementByID(string id)
     {

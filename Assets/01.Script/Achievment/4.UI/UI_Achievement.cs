@@ -6,11 +6,14 @@ public class UI_Achievement : MonoBehaviour
     [SerializeField] private List<UI_AchievementSlot> _slots;
     [SerializeField] private GameObject SlotPrefab;
     [SerializeField] private Transform ContentTransform;
+
     private void Start()
     {
-        //Refresh();
+        //if(_slots!= null)
+        //    Refresh();
         AchievementManager.Instance.OnDataChanged += Refresh;
-        AchievementManager.Instance.OnInitFinished += SetSlot;
+        AchievementManager.Instance.OnInitFinished += InitSlot;
+
     }
     private void Refresh()
     {
@@ -21,18 +24,24 @@ public class UI_Achievement : MonoBehaviour
             _slots[i].Refresh(achievements[i]);
         }
     }
-
-    private void SetSlot(int num)
+    private void InitSlot(int num)
     {
-        _slots = new List<UI_AchievementSlot>();
+        if (_slots == null)
+            _slots = new List<UI_AchievementSlot>();
 
-        for (int i = 0; i < num; ++i)
+        // 현재 슬롯 개수보다 부족한 경우에만
+        int toCreate = num - _slots.Count;
+
+        for (int i = 0; i < toCreate; ++i)
         {
             UI_AchievementSlot slot = Instantiate(SlotPrefab, ContentTransform).GetComponent<UI_AchievementSlot>();
-            _slots.Add(slot);
+            if (slot != null)
+            {
+                _slots.Add(slot);
+            }
         }
-        Refresh();
 
+        Refresh();
         gameObject.SetActive(false);
     }
 }
