@@ -32,7 +32,7 @@ public class CurrecncyManager : MonoBehaviour
     {
         _repository = new CurrencyRepository();
 
-        List<CurrencyDTO> loadedCurrencies = _repository.Load();
+        List<CurrencyDTO> loadedCurrencies = _repository.Load(AccountManager.Instance.CurrentAccount.Email);
         _currencies = new Dictionary<ECurrencyType, Currency>((int)ECurrencyType.Count);
 
         if (loadedCurrencies == null)
@@ -67,7 +67,7 @@ public class CurrecncyManager : MonoBehaviour
     {
         _currencies[type].Add(value);
 
-        _repository.Save(ToDtoList());
+        _repository.Save(ToDtoList(),AccountManager.Instance.CurrentAccount.Email);
 
         AchievementManager.Instance.Increase(EAchievementCondition.GoldCollect, value);
         OnDataChanged?.Invoke();
@@ -76,7 +76,7 @@ public class CurrecncyManager : MonoBehaviour
     {
         if (_currencies[type].TryBuy(value))
         {
-            _repository.Save(ToDtoList());
+            _repository.Save(ToDtoList(), AccountManager.Instance.CurrentAccount.Email);
 
             OnDataChanged?.Invoke();
             return true;

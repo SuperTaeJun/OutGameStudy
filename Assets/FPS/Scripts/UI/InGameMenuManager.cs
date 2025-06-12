@@ -106,10 +106,7 @@ namespace Unity.FPS.UI
             {
                 UI_Attendance.SetActive(!UI_Attendance.activeSelf);
 
-                MenuRoot.SetActive(!UI_Attendance.activeSelf);
-
-
-                if (UI_Attendance.activeSelf ==true)
+                if (MenuRoot.activeSelf)
                 {
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
@@ -148,8 +145,8 @@ namespace Unity.FPS.UI
 
                 EventSystem.current.SetSelectedGameObject(null);
 
-                //UI_Achivement.SetActive(true);
-                UI_Attendance.SetActive(true);
+                UI_Achivement.SetActive(true);
+                //UI_Attendance.SetActive(true);
             }
             else
             {
@@ -158,8 +155,8 @@ namespace Unity.FPS.UI
                 Time.timeScale = 1f;
                 AudioUtility.SetMasterVolume(1);
 
-                //UI_Achivement.SetActive(false);
-                UI_Attendance.SetActive(false);
+                UI_Achivement.SetActive(false);
+                //UI_Attendance.SetActive(false);
             }
 
         }
